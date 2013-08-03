@@ -57,7 +57,23 @@ exports.process = (data) ->
     jsonString += (prevJsonLine + "\n") if prevJsonLine
     jsonString
 
+  @compose = =>
+    output = ""
+    node = @json
+    @printNode node, (value) ->
+      output += (value + "\n")
+    output
+
+  @printNode = (node, print, indent='') =>
+    for key, value of node
+      if typeof value == 'string'
+        print (indent + key + ": " + value)
+      else
+        print "#{indent + key} {"
+        @printNode(value, print, indent + '  ')
+        print (indent + '}')
+
+
   @jsonString = @toJsonString()
   @json       = JSON.parse("{" + @jsonString.slice(0, -2) + "}")
-
-  
+  @compose()
