@@ -13,10 +13,9 @@ exports.process = (data) ->
     exec = ''
     for key in @stack
       exec += "['#{key}']"
-    console.log exec, value
     eval("this.tree#{exec} = '#{value}'")
 
-  @parse = =>
+  @parse2 = =>
     for line in data.split "\n"
       line = line.trim()
       if line.slice(-1) == '{'
@@ -34,5 +33,31 @@ exports.process = (data) ->
         @setNode(value)
         @stack.pop()
 
-  @parse()
-  return
+  @toJsonString = =>
+    jsonString = ""
+    for line in data.split "\n"
+      line = line.trim()
+      jsonLine = ""
+
+      if line.slice(-1) == '{'
+        jsonLine = "\"#{line.slice(0, -1).trim()}\": {"
+      else if line.slice(-1) == '}'
+        jsonLine = "},"
+        if prevJsonLine && prevJsonLine.slice(-1) == ','
+          prevJsonLine = prevJsonLine.slice(0, -1)
+      else if line.length > 0
+        split = line.split ':'
+        key   = split[0].trim()
+        value = (split[1] || '').trim()
+        jsonLine = "\"#{key}\": \"#{value}\","
+
+      jsonString += (prevJsonLine + "\n") if prevJsonLine
+      prevJsonLine = jsonLine
+
+    jsonString += (prevJsonLine + "\n") if prevJsonLine
+    jsonString
+
+  @jsonString = @toJsonString()
+  @json       = JSON.parse("{" + @jsonString.slice(0, -2) + "}")
+
+  
