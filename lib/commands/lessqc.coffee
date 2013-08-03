@@ -2,7 +2,7 @@
   fs       = require 'fs'
   process_ = require '../core/process'
 
-  fs.readFile './test/test.less', 'utf8', (error, data) ->
+  fs.readFile './test/media.lessqc', 'utf8', (error, data) ->
     if error
       console.error "Could not open file: #{error}"
       process.exit 1

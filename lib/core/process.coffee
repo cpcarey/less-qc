@@ -3,17 +3,16 @@ exports.process = (data) ->
     'root': {}
   @stack = ['root']
 
+  @phoneQuery   = '@phone-query = ~"only screen and (max-width: 767px)'
+  @tabletQuery  = '@tablet-query = ~"only screen and (min-width: 768px) ' +
+                  'and (max-width: 979px)"'
+  @desktopQuery = '@desktop-query = ~"only screen and (min-width: 980px)"'
+
   @createNode = =>
     exec = ''
     for key in @stack
       exec += "['#{key}']"
     eval("this.tree#{exec} = {}")
-
-  @setNode = (value) =>
-    exec = ''
-    for key in @stack
-      exec += "['#{key}']"
-    eval("this.tree#{exec} = '#{value}'")
 
   @parse2 = =>
     for line in data.split "\n"
@@ -60,20 +59,85 @@ exports.process = (data) ->
   @compose = =>
     output = ""
     node = @json
-    @printNode node, (value) ->
+    @processNode node, (value) ->
       output += (value + "\n")
     output
 
-  @printNode = (node, print, indent='') =>
+  @indent = (level) ->
+    Array(level).join '  '
+
+  @columnString = ''
+
+  @processNode = (node, print, stack=[], level=0) =>
+    indent = @indent(level)
     for key, value of node
+      stack.push key
+
       if typeof value == 'string'
-        print (indent + key + ": " + value)
+        if value.indexOf('|') > -1
+          @saveColumns(node, print, stack, level + 1, key, value)
+          stack.pop()
+        else
+          print (indent + key + ": " + value)
       else
         print "#{indent + key} {"
-        @printNode(value, print, indent + '  ')
+        @processNode(value, print, stack, level + 1)
+        stack.pop()
         print (indent + '}')
 
+  @phoneString   = ""
+  @tabletString  = ""
+  @desktopString = ""
+
+  @printNode = (stack, key, value, print) =>
+    level = 0
+    for line in stack
+      print "#{line} {"
+      level++
+
+    until level == 0
+      print "}"
+
+  @phoneTree = {}
+  @tabletTree = {}
+  @desktopTree = {}
+
+  @setNode = (treeName, stack, value) =>
+    exec = ''
+    for key in stack
+      exec += "['#{key}']"
+    eval("#{treeName}#{exec} = '#{value}'")
+
+  @saveColumns = (node, print, stack, level, key, value) =>
+    indent  = @indent(level)
+    split   = value.split('|')
+    phone   = split[1].trim()
+    tablet  = split[2].trim() || phone
+    desktop = split[3].trim() || tablet || phone
+
+    @setNode @phoneTree,   stack, phone
+    @setNode @tabletTree,  stack, tablet
+    @setNode @desktopTree, stack, desktop
+
+  @setNode = (tree, stack, value) =>
+    node = tree
+    for nodeName in stack
+      node[nodeName] ||= {}
+      if nodeName == stack[stack.length - 1]
+        node[nodeName] = value
+      else
+        node = node[nodeName]
 
   @jsonString = @toJsonString()
   @json       = JSON.parse("{" + @jsonString.slice(0, -2) + "}")
-  @compose()
+
+  output = @compose()
+  output = @desktopQuery + "\n\n" + output
+  output = @tabletQuery  + "\n"   + output
+  output = @phoneQuery   + "\n"   + output
+
+  console.log @phoneTree
+  console.log @tabletTree
+  console.log @desktopTree
+
+  output

@@ -1,0 +1,6 @@
+.class-container {
+  background: | #fff |       |       |
+  margin:     | 0    | 10px  |       |
+  padding:    | 5px  |       | 0     |
+  width:      | 100% | 500px | 700px |
+}
