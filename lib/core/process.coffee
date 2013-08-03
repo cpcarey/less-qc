@@ -3,7 +3,7 @@ exports.process = (data) ->
     'root': {}
   @stack = ['root']
 
-  @phoneQuery   = '@phone-query = ~"only screen and (max-width: 767px)'
+  @phoneQuery   = '@phone-query = ~"only screen and (max-width: 767px)"'
   @tabletQuery  = '@tablet-query = ~"only screen and (min-width: 768px) ' +
                   'and (max-width: 979px)"'
   @desktopQuery = '@desktop-query = ~"only screen and (min-width: 980px)"'
@@ -59,12 +59,37 @@ exports.process = (data) ->
   @compose = =>
     output = ""
     node = @json
-    @processNode node, (value) ->
+    print = (value) ->
       output += (value + "\n")
+
+    @processNode node, print
+
+    print '@media @phone-query {'
+    @composeNode @phoneTree, print, 1
+    print '}'
+
+    print '@media @tablet-query {'
+    @composeNode @tabletTree, print, 1
+    print '}'
+
+    print '@media @desktop-query {'
+    @composeNode @desktopTree, print, 1
+    print '}'
+
     output
 
+  @composeNode = (node, print, level=0) =>
+    indent = @indent(level)
+    for key, value of node
+      if typeof value == 'string'
+        print (indent + key + ": " + value)
+      else
+        print "#{indent + key} {"
+        @composeNode(value, print, level + 1)
+        print (indent + '}')
+
   @indent = (level) ->
-    Array(level).join '  '
+    Array(level + 1).join '  '
 
   @columnString = ''
 
@@ -115,9 +140,9 @@ exports.process = (data) ->
     tablet  = split[2].trim() || phone
     desktop = split[3].trim() || tablet || phone
 
-    @setNode @phoneTree,   stack, phone
-    @setNode @tabletTree,  stack, tablet
-    @setNode @desktopTree, stack, desktop
+    @setNode @phoneTree,   stack, phone   + ';'
+    @setNode @tabletTree,  stack, tablet  + ';'
+    @setNode @desktopTree, stack, desktop + ';'
 
   @setNode = (tree, stack, value) =>
     node = tree
@@ -135,9 +160,5 @@ exports.process = (data) ->
   output = @desktopQuery + "\n\n" + output
   output = @tabletQuery  + "\n"   + output
   output = @phoneQuery   + "\n"   + output
-
-  console.log @phoneTree
-  console.log @tabletTree
-  console.log @desktopTree
 
   output
