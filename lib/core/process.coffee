@@ -8,29 +8,16 @@ exports.process = (data) ->
                   'and (max-width: 979px)"'
   @desktopQuery = '@desktop-query = ~"only screen and (min-width: 980px)"'
 
-  @createNode = =>
-    exec = ''
-    for key in @stack
-      exec += "['#{key}']"
-    eval("this.tree#{exec} = {}")
+  @phoneString   = ""
+  @tabletString  = ""
+  @desktopString = ""
 
-  @parse2 = =>
-    for line in data.split "\n"
-      line = line.trim()
-      if line.slice(-1) == '{'
-        line       = line.slice(0, -1).trim()
-        @stack.push line
-        @createNode()
-      else if line.slice(-1) == '}'
-        @stack.pop()
-      else if line.length > 0
-        split     = line.split ':'
-        key       = split[0].trim()
-        value     = (split[1] || '').trim()
+  @phoneTree = {}
+  @tabletTree = {}
+  @desktopTree = {}
 
-        @stack.push key
-        @setNode(value)
-        @stack.pop()
+  @indent = (level) ->
+    Array(level + 1).join '  '
 
   @toJsonString = =>
     jsonString = ""
@@ -88,11 +75,6 @@ exports.process = (data) ->
         @composeNode(value, print, level + 1)
         print (indent + '}')
 
-  @indent = (level) ->
-    Array(level + 1).join '  '
-
-  @columnString = ''
-
   @processNode = (node, print, stack=[], level=0) =>
     indent = @indent(level)
     for key, value of node
@@ -110,9 +92,6 @@ exports.process = (data) ->
         stack.pop()
         print (indent + '}')
 
-  @phoneString   = ""
-  @tabletString  = ""
-  @desktopString = ""
 
   @printNode = (stack, key, value, print) =>
     level = 0
@@ -122,10 +101,6 @@ exports.process = (data) ->
 
     until level == 0
       print "}"
-
-  @phoneTree = {}
-  @tabletTree = {}
-  @desktopTree = {}
 
   @setNode = (treeName, stack, value) =>
     exec = ''
