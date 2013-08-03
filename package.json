@@ -1,0 +1,26 @@
+{
+  "name": "less-qc",
+  "version": "0.0.1-beta.1",
+  "description": "LESS preprocessor for values express in media query columns",
+  "author": "Chris Carey",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "main": "lib",
+  "bin": {
+    "lessqc": "bin/lessqc"
+  },
+  "dependencies": {
+    "nopt": "2.1.1"
+  },
+  "devDependencies": {
+    "coffee-script": "1.6.2"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cpcarey/less-qc.git"
+  },
+  "gitHead": "35005f16fe74529125af4588a3a8d7e64ee2e453"
+}
