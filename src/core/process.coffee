@@ -3,10 +3,10 @@ exports.process = (data) ->
     'root': {}
   @stack = ['root']
 
-  @phoneQuery   = '@phone-query: ~"only screen and (max-width: 767px);"'
+  @phoneQuery   = '@phone-query: ~"only screen and (max-width: 767px)";'
   @tabletQuery  = '@tablet-query: ~"only screen and (min-width: 768px) ' +
-                  'and (max-width: 979px);"'
-  @desktopQuery = '@desktop-query: ~"only screen and (min-width: 980px);"'
+                  'and (max-width: 979px)";'
+  @desktopQuery = '@desktop-query: ~"only screen and (min-width: 980px)";'
 
   @phoneString   = ""
   @tabletString  = ""
