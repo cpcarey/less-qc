@@ -1,6 +1,6 @@
 {
   "name": "less-qc",
-  "version": "0.0.1-beta.1",
+  "version": "0.0.1-beta.3",
   "description": "LESS preprocessor for values express in media query columns",
   "author": "Chris Carey",
   "license": "MIT",
@@ -19,6 +19,7 @@
     "coffee-script": "1.6.2"
   },
   "directories": {
+    "lib": "lib",
     "test": "test"
   },
   "repository": {
