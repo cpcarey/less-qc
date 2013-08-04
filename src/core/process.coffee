@@ -12,8 +12,8 @@ exports.process = (data) ->
   @tabletString  = ""
   @desktopString = ""
 
-  @phoneTree = {}
-  @tabletTree = {}
+  @phoneTree   = {}
+  @tabletTree  = {}
   @desktopTree = {}
 
   @indent = (level) ->
@@ -83,14 +83,13 @@ exports.process = (data) ->
       if typeof value == 'string'
         if value.indexOf('|') > -1
           @saveColumns(node, print, stack, level + 1, key, value)
-          stack.pop()
         else
           print (indent + key + ": " + value)
       else
         print "#{indent + key} {"
         @processNode(value, print, stack, level + 1)
-        stack.pop()
         print (indent + '}')
+      stack.pop()
 
 
   @printNode = (stack, key, value, print) =>

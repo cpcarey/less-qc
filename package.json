@@ -29,6 +29,6 @@
   "scripts": {
     "compile":    "./node_modules/.bin/coffee -bo lib src",
     "prepublish": "./node_modules/.bin/coffee -bo lib src",
-    "test":       "node lib/commands/lessqc.js src/test/media.lessqc src/test/media.less"
+    "test":       "node ./bin/lessqc src/test/demo.lessqc src/test/demo.less"
   }
 }
