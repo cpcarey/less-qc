@@ -9,7 +9,7 @@ Example
 
 #### LESS Query Columns
 
-```less
+```css
 .action-container {
   background-color: #ccc;
   font-family: 'Source Sans Pro', sans-serif;
@@ -22,7 +22,7 @@ Example
 
 #### LESS
 
-```less
+```css
 @phone-width-query:   ~"only screen and (max-width: 767px)";
 @tablet-width-query:  ~"only screen and (min-width: 768px) and (max-width: 979px)";
 @desktop-width-query: ~"only screen and (min-width: 980px)";
@@ -65,7 +65,7 @@ Features
 
 Define columns and queries in `config.json`:
 
-```less
+```css
 {
   "columns": {
     "width": {
@@ -86,7 +86,7 @@ Define columns and queries in `config.json`:
 
 Refer to columns as such:
 
-```less
+```css
              | @width-columns                |
     padding: | 10px |       | 20px  |        |
       width: | 100% | 720px | 900px | 1080px |
