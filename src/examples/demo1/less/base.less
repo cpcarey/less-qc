@@ -1,0 +1,36 @@
+@phone-device-query: ~"only screen and (max-width: 767px)";
+@tablet-device-query: ~"only screen and (min-width: 768px) and (max-width: 979px)";
+@desktop-device-query: ~"only screen and (min-width: 980px)";
+
+.tile {
+  background-color: #ccc;
+  border: solid #000;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+@media @phone-device-query {
+  .tile {
+    border-width: 4px;
+    font-size: 20px;
+    margin: 20px;
+    padding: 20px;
+    width: auto;
+  }
+}
+@media @tablet-device-query {
+  .tile {
+    border-width: 8px;
+    font-size: 20px;
+    margin: 50px;
+    padding: 20px;
+    width: auto;
+  }
+}
+@media @desktop-device-query {
+  .tile {
+    border-width: 8px;
+    font-size: 26px;
+    margin: 50px auto;
+    padding: 30px;
+    width: 640px;
+  }
+}

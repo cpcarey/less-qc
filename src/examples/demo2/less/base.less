@@ -1,0 +1,149 @@
+@phone-device-query: ~"only screen and (max-width: 767px)";
+@tablet-device-query: ~"only screen and (min-width: 768px) and (max-width: 979px)";
+@desktop-device-query: ~"only screen and (min-width: 980px)";
+@extra-small-width-query: ~"only screen and (max-width: 480px)";
+@small-width-query: ~"only screen and (min-width: 481px) and (max-width: 767px)";
+@medium-width-query: ~"only screen and (min-width: 768px) and (max-width: 979px)";
+@large-width-query: ~"only screen and (min-width: 980px) and (max-width: 1199px)";
+@extra-large-width-query: ~"only screen and (min-width: 1200px)";
+@small-height-query: ~"only screen and (max-height: 400px)";
+@medium-height-query: ~"only screen and (min-height: 401px) and (max-height: 600px)";
+@large-height-query: ~"only screen and (min-height: 601px)";
+
+.grid {
+  display: block;
+  margin: 20px auto;
+  width: 360px;
+  .row {
+    clear: both;
+    margin: 0 auto;
+    .cell {
+      border: 5px solid;
+      box-sizing: border-box;
+      font: 32px bold 'Source Sans Pro', sans-serif;
+      float: left;
+      height: 50px;
+      margin: 20px;
+      text-align: center;
+      width: 50px;
+      &.col1, &.col3 {
+      }
+      &.col2, &.col4 {
+      }
+    }
+    &.row1 .cell, &.row3 .cell {
+    }
+    &.row2 .cell, &.row4 .cell {
+    }
+  }
+}
+@media @extra-small-width-query {
+  .grid {
+    .row {
+      .cell {
+        &.col1, &.col3 {
+          border-color: black;
+        }
+        &.col2, &.col4 {
+          border-color: green;
+        }
+      }
+      &.row1 .cell, &.row3 .cell {
+        background-color: green;
+        color: black;
+      }
+      &.row2 .cell, &.row4 .cell {
+        background-color: black;
+        color: green;
+      }
+    }
+  }
+}
+@media @small-width-query {
+  .grid {
+    .row {
+      .cell {
+        &.col1, &.col3 {
+          border-color: blue;
+        }
+        &.col2, &.col4 {
+          border-color: black;
+        }
+      }
+      &.row1 .cell, &.row3 .cell {
+        background-color: blue;
+        color: black;
+      }
+      &.row2 .cell, &.row4 .cell {
+        background-color: black;
+        color: blue;
+      }
+    }
+  }
+}
+@media @medium-width-query {
+  .grid {
+    .row {
+      .cell {
+        &.col1, &.col3 {
+          border-color: red;
+        }
+        &.col2, &.col4 {
+          border-color: black;
+        }
+      }
+      &.row1 .cell, &.row3 .cell {
+        background-color: black;
+        color: red;
+      }
+      &.row2 .cell, &.row4 .cell {
+        background-color: red;
+        color: black;
+      }
+    }
+  }
+}
+@media @large-width-query {
+  .grid {
+    .row {
+      .cell {
+        &.col1, &.col3 {
+          border-color: black;
+        }
+        &.col2, &.col4 {
+          border-color: orange;
+        }
+      }
+      &.row1 .cell, &.row3 .cell {
+        background-color: black;
+        color: orange;
+      }
+      &.row2 .cell, &.row4 .cell {
+        background-color: orange;
+        color: black;
+      }
+    }
+  }
+}
+@media @extra-large-width-query {
+  .grid {
+    .row {
+      .cell {
+        &.col1, &.col3 {
+          border-color: black;
+        }
+        &.col2, &.col4 {
+          border-color: orange;
+        }
+      }
+      &.row1 .cell, &.row3 .cell {
+        background-color: black;
+        color: orange;
+      }
+      &.row2 .cell, &.row4 .cell {
+        background-color: orange;
+        color: black;
+      }
+    }
+  }
+}

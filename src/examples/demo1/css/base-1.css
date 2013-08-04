@@ -1,0 +1,50 @@
+.tile {
+  background-color: #ccc;
+  border: solid #000;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+@media only screen and (max-width: 480px) {
+  .tile {
+    border-width: 2px;
+    font-size: 20px;
+    margin: 40px;
+    padding: 20px;
+    width: auto;
+  }
+}
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+  .tile {
+    border-width: 4px;
+    font-size: 20px;
+    margin: 50px;
+    padding: 20px;
+    width: auto;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 979px) {
+  .tile {
+    border-width: 6px;
+    font-size: 26px;
+    margin: 50px auto;
+    padding: 30px;
+    width: 640px;
+  }
+}
+@media only screen and (min-width: 980px) and (max-width: 1199px) {
+  .tile {
+    border-width: 8px;
+    font-size: 32px;
+    margin: 50px auto;
+    padding: 40px;
+    width: 720px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .tile {
+    border-width: 10px;
+    font-size: 32px;
+    margin: 50px auto;
+    padding: 40px;
+    width: 900px;
+  }
+}

@@ -1,0 +1,51 @@
+.grid {
+  display: block;
+  margin: 20px auto;
+  width: 400px;
+}
+.row {
+  clear: both;
+  margin: 0 auto;
+}
+.cell {
+  border: 5px solid;
+  box-sizing: border-box;
+  float: left;
+  margin: 20px;
+}
+@media only screen and (max-width: 767px) {
+  .cell {
+    background-color: #fff;
+    width: 20px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 979px) {
+  .cell {
+    background-color: #f99;
+    width: 40px;
+  }
+}
+@media only screen and (min-width: 980px) {
+  .cell {
+    background-color: #f00;
+    width: 60px;
+  }
+}
+@media only screen and (max-height: 400px) {
+  .cell {
+    border-color: #000;
+    height: 20px;
+  }
+}
+@media only screen and (min-height: 401px) and (max-height: 600px) {
+  .cell {
+    border-color: #999;
+    height: 40px;
+  }
+}
+@media only screen and (min-height: 601px) {
+  .cell {
+    border-color: #ccc;
+    height: 60px;
+  }
+}

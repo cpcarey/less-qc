@@ -1,0 +1,63 @@
+@phone-device-query: ~"only screen and (max-width: 767px)";
+@tablet-device-query: ~"only screen and (min-width: 768px) and (max-width: 979px)";
+@desktop-device-query: ~"only screen and (min-width: 980px)";
+@extra-small-width-query: ~"only screen and (max-width: 480px)";
+@small-width-query: ~"only screen and (min-width: 481px) and (max-width: 767px)";
+@medium-width-query: ~"only screen and (min-width: 768px) and (max-width: 979px)";
+@large-width-query: ~"only screen and (min-width: 980px) and (max-width: 1199px)";
+@extra-large-width-query: ~"only screen and (min-width: 1200px)";
+@small-height-query: ~"only screen and (max-height: 400px)";
+@medium-height-query: ~"only screen and (min-height: 401px) and (max-height: 600px)";
+@large-height-query: ~"only screen and (min-height: 601px)";
+
+.grid {
+  display: block;
+  margin: 20px auto;
+  width: 400px;
+}
+.row {
+  clear: both;
+  margin: 0 auto;
+}
+.cell {
+  border: 5px solid;
+  box-sizing: border-box;
+  float: left;
+  margin: 20px;
+}
+@media @phone-device-query {
+  .cell {
+    background-color: #fff;
+    width: 20px;
+  }
+}
+@media @tablet-device-query {
+  .cell {
+    background-color: #f99;
+    width: 40px;
+  }
+}
+@media @desktop-device-query {
+  .cell {
+    background-color: #f00;
+    width: 60px;
+  }
+}
+@media @small-height-query {
+  .cell {
+    border-color: #000;
+    height: 20px;
+  }
+}
+@media @medium-height-query {
+  .cell {
+    border-color: #999;
+    height: 40px;
+  }
+}
+@media @large-height-query {
+  .cell {
+    border-color: #ccc;
+    height: 60px;
+  }
+}

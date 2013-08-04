@@ -1,0 +1,11 @@
+.tile {
+  background-color: #ccc;
+  border: solid #000;
+  font-family: 'Source Sans Pro', sans-serif;
+
+  border-width: | 4px  | 8px  |           |
+     font-size: | 20px |      | 26px      |
+        margin: | 20px | 50px | 50px auto |
+       padding: | 20px |      | 30px      |
+         width: | auto |      | 640px     |
+}

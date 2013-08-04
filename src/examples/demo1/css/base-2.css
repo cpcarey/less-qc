@@ -1,0 +1,107 @@
+.grid {
+  display: block;
+  margin: 20px auto;
+  width: 360px;
+}
+.grid .row {
+  clear: both;
+  margin: 0 auto;
+}
+.grid .row .cell {
+  border: 5px solid;
+  box-sizing: border-box;
+  float: left;
+  height: 50px;
+  margin: 20px;
+  width: 50px;
+}
+@media only screen and (max-width: 480px) {
+  .grid .row .cell.col1,
+  .grid .row .cell.col3 {
+    border-color: black;
+  }
+  .grid .row .cell.col2,
+  .grid .row .cell.col4 {
+    border-color: green;
+  }
+  .grid .row.row1 .cell,
+  .grid .row.row3 .cell {
+    background-color: green;
+  }
+  .grid .row.row2 .cell,
+  .grid .row.row4 .cell {
+    background-color: black;
+  }
+}
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+  .grid .row .cell.col1,
+  .grid .row .cell.col3 {
+    border-color: blue;
+  }
+  .grid .row .cell.col2,
+  .grid .row .cell.col4 {
+    border-color: black;
+  }
+  .grid .row.row1 .cell,
+  .grid .row.row3 .cell {
+    background-color: blue;
+  }
+  .grid .row.row2 .cell,
+  .grid .row.row4 .cell {
+    background-color: black;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 979px) {
+  .grid .row .cell.col1,
+  .grid .row .cell.col3 {
+    border-color: red;
+  }
+  .grid .row .cell.col2,
+  .grid .row .cell.col4 {
+    border-color: black;
+  }
+  .grid .row.row1 .cell,
+  .grid .row.row3 .cell {
+    background-color: black;
+  }
+  .grid .row.row2 .cell,
+  .grid .row.row4 .cell {
+    background-color: red;
+  }
+}
+@media only screen and (min-width: 980px) and (max-width: 1199px) {
+  .grid .row .cell.col1,
+  .grid .row .cell.col3 {
+    border-color: black;
+  }
+  .grid .row .cell.col2,
+  .grid .row .cell.col4 {
+    border-color: orange;
+  }
+  .grid .row.row1 .cell,
+  .grid .row.row3 .cell {
+    background-color: black;
+  }
+  .grid .row.row2 .cell,
+  .grid .row.row4 .cell {
+    background-color: orange;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .grid .row .cell.col1,
+  .grid .row .cell.col3 {
+    border-color: black;
+  }
+  .grid .row .cell.col2,
+  .grid .row .cell.col4 {
+    border-color: orange;
+  }
+  .grid .row.row1 .cell,
+  .grid .row.row3 .cell {
+    background-color: black;
+  }
+  .grid .row.row2 .cell,
+  .grid .row.row4 .cell {
+    background-color: orange;
+  }
+}

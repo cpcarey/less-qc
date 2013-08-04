@@ -1,0 +1,25 @@
+.grid {
+  display: block;
+  margin: 20px auto;
+  width: 400px;
+}
+
+.row {
+  clear: both;
+  margin: 0 auto;
+}
+
+.cell {
+  border: 5px solid;
+  box-sizing: border-box;
+  float: left;
+  margin: 20px;
+
+                    | @device-columns    |
+  background-color: | #fff | #f99 | #f00 |
+             width: | 20px | 40px | 60px |
+
+                    | @height-columns    |
+      border-color: | #000 | #999 | #ccc |
+            height: | 20px | 40px | 60px |
+}

@@ -1,0 +1,45 @@
+.grid {
+  display: block;
+  margin: 20px auto;
+  width: 360px;
+
+  .row {
+    clear: both;
+    margin: 0 auto;
+
+    .cell {
+      border: 5px solid;
+      box-sizing: border-box;
+      font: 32px bold 'Source Sans Pro', sans-serif;
+      float: left;
+      height: 50px;
+      margin: 20px;
+      text-align: center;
+      width: 50px;
+
+      &.col1, &.col3 {
+                        | @width-columns                      |
+          border-color: | black | blue  | red  | black  |     |
+      }
+
+      &.col2, &.col4 {
+                        | @width-columns                      |
+          border-color: | green | black |      | orange |     |
+      }
+    }
+
+    &.row1 .cell, &.row3 .cell {
+                        | @width-columns                      |
+      background-color: | green | blue | black |        |     |
+                 color: | black |      | red   | orange |     |
+    }
+
+    &.row2 .cell, &.row4 .cell {
+                        | @width-columns                      |
+      background-color: | black |      | red   | orange |     |
+                 color: | green | blue | black |        |     |
+    }
+  }
+}
+
+
