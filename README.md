@@ -65,7 +65,7 @@ Features
 
 Define columns and queries in `config.json`:
 
-```css
+```js
 {
   "columns": {
     "width": {
