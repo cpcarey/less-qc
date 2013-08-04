@@ -87,11 +87,13 @@ Define columns and queries in `config.json`:
 Refer to columns as such:
 
 ```css
-             | @width-columns                |
-    padding: | 10px |       | 20px  |        |
-      width: | 100% | 720px | 900px | 1080px |
+.container {
+               | @width-columns                |
+      padding: | 10px |       | 20px  |        |
+        width: | 100% | 720px | 900px | 1080px |
 
-             | @height-columns      |
-  font-size: | 24px | 20px  | 16px  |
-line-height: | 1    | 1.2   |       |
+               | @height-columns      |
+    font-size: | 24px | 20px  | 16px  |
+  line-height: | 1    | 1.2   |       |
+}
 ```
