@@ -1,0 +1,7 @@
+{
+  "columns": {
+    "phone":   "only screen and (max-width: 767px)",
+    "tablet":  "only screen and (min-width: 768px) and (max-width: 979px)",
+    "desktop": "only screen and (max-width: 980px)"
+  }
+}
