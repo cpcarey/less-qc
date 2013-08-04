@@ -11,21 +11,9 @@ var knownOpts  = { version: Boolean };
 var shortHands = { 'v': ['--version'] };
 var options    = nopt(knownOpts, shortHands, process.argv, 2);
 
-var lessqc     = require('./lib');
+var lessqc     = require('../lib/commands/lessqc');
 lessqc.version = pkg.version
 
 if (options.version) return console.log('less-qc: ' + pkg.version);
 
-command = options.argv.remain && options.argv.remain.shift();
-if (lessqc.commands[command] == undefined) command = 'help';
-
-lessqc.commands[command].line(process.argv)
-  .on('data', function(data) {
-    if (data) process.stdout.write(data);
-  })
-  .on('end', function(data) {
-    if (data) process.stdout.write(data);
-  })
-  .on('error', function(err) {
-    process.stdout.write(err.message + '\n');
-  });
+lessqc.lessqc(process.argv)

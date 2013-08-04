@@ -6,6 +6,9 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "main": "lib",
+  "engines": {
+    "node": ">=0.8.0"
+  },
   "bin": {
     "lessqc": "bin/lessqc"
   },
@@ -22,5 +25,8 @@
     "type": "git",
     "url": "git://github.com/cpcarey/less-qc.git"
   },
-  "gitHead": "35005f16fe74529125af4588a3a8d7e64ee2e453"
+  "scripts": {
+    "compile": "./node_modules/.bin/coffee -bo lib src",
+    "test":    "node lib/commands/lessqc.js src/test/media.lessqc src/test/media.less"
+  }
 }

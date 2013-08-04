@@ -1,0 +1,30 @@
+@phone-query = ~"only screen and (max-width: 767px)"
+@tablet-query = ~"only screen and (min-width: 768px) and (max-width: 979px)"
+@desktop-query = ~"only screen and (min-width: 980px)"
+
+.class-container {
+}
+@media @phone-query {
+  .class-container {
+    background: #fff;
+    margin: 0;
+    padding: 5px;
+    width: 100%;
+  }
+}
+@media @tablet-query {
+  .class-container {
+    background: #fff;
+    margin: 10px;
+    padding: 5px;
+    width: 500px;
+  }
+}
+@media @desktop-query {
+  .class-container {
+    background: #fff;
+    margin: 10px;
+    padding: 0;
+    width: 700px;
+  }
+}

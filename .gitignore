@@ -12,5 +12,6 @@ logs
 results
 
 /node_modules
+/lib
 
 npm-debug.log
