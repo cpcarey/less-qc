@@ -4,18 +4,12 @@ exports.process = (data) ->
   @stack = ['root']
 
   @config = require '../../config.json'
+  @columns = @config.columns
 
-  @phoneQuery   = "@phone-query: ~\"#{@config.columns.phone}\";"
-  @tabletQuery  = "@tablet-query: ~\"#{@config.columns.tablet}\";"
-  @desktopQuery = "@desktop-query: ~\"#{@config.columns.desktop}\";"
-
-  @phoneString   = ""
-  @tabletString  = ""
-  @desktopString = ""
-
-  @phoneTree   = {}
-  @tabletTree  = {}
-  @desktopTree = {}
+  for media, query of @columns
+    @["#{media}Query"] = "@#{media}-query: ~\"#{query}\";"
+    @["#{media}String"] = ''
+    @["#{media}Tree"] = {}
 
   @indent = (level) ->
     Array(level + 1).join '  '
@@ -52,17 +46,10 @@ exports.process = (data) ->
 
     @processNode node, print
 
-    print '@media @phone-query {'
-    @composeNode @phoneTree, print, 1
-    print '}'
-
-    print '@media @tablet-query {'
-    @composeNode @tabletTree, print, 1
-    print '}'
-
-    print '@media @desktop-query {'
-    @composeNode @desktopTree, print, 1
-    print '}'
+    for media, query of @columns
+      print "@media @#{media}-query {"
+      @composeNode @["#{media}Tree"], print, 1
+      print '}'
 
     output
 
@@ -92,7 +79,6 @@ exports.process = (data) ->
         print (indent + '}')
       stack.pop()
 
-
   @printNode = (stack, key, value, print) =>
     level = 0
     for line in stack
@@ -111,13 +97,18 @@ exports.process = (data) ->
   @saveColumns = (node, print, stack, level, key, value) =>
     indent  = @indent(level)
     split   = value.split('|')
-    phone   = split[1].trim()
-    tablet  = split[2].trim() || phone
-    desktop = split[3].trim() || tablet || phone
+   
+    i = 0
+    values = {}
+    valuesArray = []
+    for media, query of @columns
+      fallback = if i > 0 then valuesArray[i - 1] else ''
+      values[media] = split[i + 1].trim() || fallback
+      valuesArray.push values[media]
+      i++
 
-    @setNode @phoneTree,   stack, phone   + ';'
-    @setNode @tabletTree,  stack, tablet  + ';'
-    @setNode @desktopTree, stack, desktop + ';'
+    for media, query of @columns
+      @setNode @["#{media}Tree"], stack, values[media] + ';'
 
   @setNode = (tree, stack, value) =>
     node = tree
@@ -132,8 +123,11 @@ exports.process = (data) ->
   @json       = JSON.parse("{" + @jsonString.slice(0, -2) + "}")
 
   output = @compose()
-  output = @desktopQuery + "\n\n" + output
-  output = @tabletQuery  + "\n"   + output
-  output = @phoneQuery   + "\n"   + output
 
+  queries = ""
+  for media, query of @columns
+    queries += @["#{media}Query"] + "\n"
+
+  output = queries + "\n" + output
   output
+
