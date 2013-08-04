@@ -1,9 +1,22 @@
 {
   "columns": {
-    "extra-small": "only screen and (max-width: 480px)",
-    "small":       "only screen and (min-width: 481px) and (max-width: 767px)",
-    "medium":      "only screen and (min-width: 768px) and (max-width: 979px)",
-    "large":       "only screen and (min-width: 980px) and (max-width: 1199px)",
-    "extra-large": "only screen and (min-width: 1200px)"
-  }
+    "device": {
+      "phone":   "only screen and (max-width: 767px)",
+      "tablet":  "only screen and (min-width: 768px) and (max-width: 979px)",
+      "desktop": "only screen and (min-width: 980px)"
+    },
+    "width": {
+      "extra-small": "only screen and (max-width: 480px)",
+      "small":       "only screen and (min-width: 481px) and (max-width: 767px)",
+      "medium":      "only screen and (min-width: 768px) and (max-width: 979px)",
+      "large":       "only screen and (min-width: 980px) and (max-width: 1199px)",
+      "extra-large": "only screen and (min-width: 1200px)"
+    },
+    "height": {
+      "small":  "only screen and (max-height: 400px)",
+      "medium": "only screen and (min-height: 401px) and (max-height: 600px)",
+      "large":  "only screen and (min-height: 601px)"
+    }
+  },
+  "defaultColumns": "device"
 }
