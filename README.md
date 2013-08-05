@@ -4,6 +4,14 @@ LESS Query Columns
 LESS query columns is a more readable way to express attribute values in LESS
 across multiple media queries.
 
+#### Disclaimer
+
+Note: This was made during a hackathon, I'll have usage docs up soon.  I'll
+also add tests and better error messages.
+
+I'm also considering forking less.js once I can take the time to read through
+the code.
+
 Example
 -
 
@@ -20,7 +28,7 @@ Example
 }
 ```
 
-#### LESS
+#### Resulting LESS
 
 ```css
 @phone-width-query:   ~"only screen and (max-width: 767px)";
